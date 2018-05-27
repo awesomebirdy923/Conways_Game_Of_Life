@@ -1,7 +1,3 @@
-import java.awt.Component;
-import java.awt.Container;
-import java.awt.Dimension;
-import java.awt.LayoutManager;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
@@ -29,13 +25,13 @@ import javax.swing.JTextField;
  *
  */
 
-public class ConwaysGameOfLife extends JPanel implements ActionListener, MouseListener{
+public class ConwaysGameOfLife extends JPanel implements ActionListener, MouseListener {
 	public static final int WIDTH = 700;
 	public static final int HEIGHT = 700;
 	public static final int CELLS_PER_ROW = 350;
-	
+
 	private boolean isRunning = false;
-	
+
 	private JFrame window;
 	private JPanel inputPanel;
 	private JButton startStopButton;
@@ -43,18 +39,18 @@ public class ConwaysGameOfLife extends JPanel implements ActionListener, MouseLi
 	private JButton clearButton;
 	private JLabel speedLabel;
 	private JTextField speedField;
-	
+
 	private WorldPanel gamePanel;
-	
+
 	public static void main(String[] args) {
 		new ConwaysGameOfLife().launchGame();
 	}
-	
+
 	public void launchGame() {
-		//build the window and start the simulation
+		// build the window and start the simulation
 		window = new JFrame();
 		inputPanel = new JPanel();
-		gamePanel = new WorldPanel(WIDTH, 600, 200);
+		gamePanel = new WorldPanel(WIDTH, HEIGHT, 700);
 		startStopButton = new JButton("Start");
 		randomizeButton = new JButton("Randomize");
 		clearButton = new JButton("Clear");
@@ -70,71 +66,73 @@ public class ConwaysGameOfLife extends JPanel implements ActionListener, MouseLi
 		inputPanel.add(clearButton);
 		inputPanel.add(speedLabel);
 		inputPanel.add(speedField);
-		window.add(gamePanel);
-		window.add(inputPanel);
+		JPanel newPanel = new JPanel();
+		newPanel.add(inputPanel);
+		newPanel.add(gamePanel);
+		window.add(newPanel);
 		window.addMouseListener(this);
 		window.setVisible(true);
 		window.setResizable(false);
 	}
-	
+
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		//if startStopButton is pressed, 
-			// toggle isRunning to the opposite of its current state
-			// start or stop the animation based on the state of isRunning
+		// if startStopButton is pressed,
+		// toggle isRunning to the opposite of its current state
+		// start or stop the animation based on the state of isRunning
 		JButton buttonPressed = (JButton) e.getSource();
-		if(startStopButton == buttonPressed) {
+		if (startStopButton == buttonPressed) {
 			System.out.println("Start-Stop Button pressed");
-			if(isRunning == true) {
+			if (isRunning == true) {
 				isRunning = false;
 				gamePanel.stopAnimation();
 				startStopButton.setText("Start");
-			}else if(isRunning == false) {
+			} else if (isRunning == false) {
 				isRunning = true;
 				gamePanel.startAnimation();
 				startStopButton.setText("Stop");
 			}
-		}else if(randomizeButton == buttonPressed) {
+		} else if (randomizeButton == buttonPressed) {
 			System.out.println("Randomize Button pressed");
 			gamePanel.randomizeCells();
-		}else if(clearButton == buttonPressed) {
+		} else if (clearButton == buttonPressed) {
 			System.out.println("Clear Button pressed");
 			gamePanel.clearCells();
 		}
 		// if ranomizeButton is pressed
-			// call randomizeCells
-		
+		// call randomizeCells
+
 		// if clearButton is pressed
-			//call clearCells
+		// call clearCells
 	}
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void mousePressed(MouseEvent e) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void mouseReleased(MouseEvent e) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void mouseEntered(MouseEvent e) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void mouseExited(MouseEvent e) {
 		// TODO Auto-generated method stub
-		
+
 	}
 }
