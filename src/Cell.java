@@ -39,8 +39,6 @@ public class Cell implements Drawable {
 			}
 		}
 	}
-
-	thikc
 	
 	public int getX() {
 		return x;
@@ -54,6 +52,7 @@ public class Cell implements Drawable {
 	// draws empty square if cell is dead
 	@Override
 	public void draw(Graphics g) {
+//		System.out.println(cellSize);
 		if (isAlive) {
 			g.drawRect(getX(), getY(), cellSize, cellSize);
 			g.setColor(Color.RED);

@@ -50,7 +50,7 @@ public class ConwaysGameOfLife extends JPanel implements ActionListener, MouseLi
 		// build the window and start the simulation
 		window = new JFrame();
 		inputPanel = new JPanel();
-		gamePanel = new WorldPanel(WIDTH, HEIGHT, 700);
+		gamePanel = new WorldPanel(WIDTH, HEIGHT, 8);
 		startStopButton = new JButton("Start");
 		randomizeButton = new JButton("Randomize");
 		clearButton = new JButton("Clear");
@@ -70,7 +70,7 @@ public class ConwaysGameOfLife extends JPanel implements ActionListener, MouseLi
 		newPanel.add(inputPanel);
 		newPanel.add(gamePanel);
 		window.add(newPanel);
-		window.addMouseListener(this);
+		window.addMouseListener(gamePanel);
 		window.setVisible(true);
 		window.setResizable(false);
 	}
@@ -83,6 +83,8 @@ public class ConwaysGameOfLife extends JPanel implements ActionListener, MouseLi
 		JButton buttonPressed = (JButton) e.getSource();
 		if (startStopButton == buttonPressed) {
 			System.out.println("Start-Stop Button pressed");
+			int newDelay = Integer.parseInt(speedField.getText());
+			gamePanel.setAnimationDelay(newDelay);
 			if (isRunning == true) {
 				isRunning = false;
 				gamePanel.stopAnimation();
