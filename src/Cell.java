@@ -39,7 +39,7 @@ public class Cell implements Drawable {
 			}
 		}
 	}
-	
+
 	public int getX() {
 		return x;
 	}
@@ -52,13 +52,13 @@ public class Cell implements Drawable {
 	// draws empty square if cell is dead
 	@Override
 	public void draw(Graphics g) {
-//		System.out.println(cellSize);
+		// System.out.println(cellSize);
 		if (isAlive) {
-			g.drawRect(getX(), getY(), cellSize, cellSize);
 			g.setColor(Color.RED);
+			g.fillRect(getX(), getY(), cellSize, cellSize);
 		} else {
-			g.drawRect(getX(), getY(), cellSize, cellSize);
 			g.setColor(Color.DARK_GRAY);
+			g.fillRect(getX(), getY(), cellSize, cellSize);
 		}
 	}
 }
